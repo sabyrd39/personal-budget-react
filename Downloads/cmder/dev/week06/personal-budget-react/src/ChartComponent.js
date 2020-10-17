@@ -1,36 +1,38 @@
-import Axios from 'axios';
+import axios from 'axios';
 import React, {Component} from 'react';
 import Chart from 'chart.js';
+import 
 
 class ChartComponent extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             chartData: {}          
         }
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getChartData();
     }
     
-    getChartDataTwo() {
-        Axios.get('/required.json')
+    getChartData() {
+        axios.get("./required.json")
         .then(function(res) {
-            console.log(res.data)
-            for (var i = 0; i < res.data.myBudget.length; i++) {
-                this.state.chartData.datasets[0].data[i] = res.data.myBudget[i].budget;
-                this.state.chartData.labels[i] = res.data.myBudget[i].title;
-            }
-        });
-    }
-
-        getChartData() {
+            const myBudget = res.data;
+            let labels = [];
+            let data = [];
+            myBudget.array.forEach(element => {
+                labels.push(element.labels);
+                data.push(element.data);
+            });
+            console.log(myBudget)
             this.setState({
                 chartData: {
+                    labels: labels,
                     datasets: [
                         {
-                            data: [],
+                            label: "Budget",
+                            data: data,
                             backgroundColor: [
                                 '#ffcd56',
                                 '#ff6384',
@@ -42,20 +44,18 @@ class ChartComponent extends Component {
                                 "#ff33cc",                        
                             ],
                         }
-                    ],
-                    labels: []
+                    ]
                 }
-            }) 
-
-            this.getChartDataTwo();
-        }
+            });          
+        });
+    }
     
 
     render() {
         return (
-            <div className = "chart">
+            <div className = "ChartComponent">
                 <Chart 
-                    data = {this.state.chartData}
+                    chartData = {this.state.chartData}
                     options = {{}}
                 />
             </div>

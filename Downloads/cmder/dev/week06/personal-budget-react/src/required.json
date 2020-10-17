@@ -1,32 +1,24 @@
 {
-    "myBudget": [
-        {
-            "title" : "Eat out",
-            "budget": 25
-        },
-        {
-            "title": "Rent",
-            "budget": 375
-        },
-        {
-            "title": "Groceries",
-            "budget": 110
-        },
-        {
-            "title": "Electricity",
-            "budget": 40
-        },
-        {
-            "title": "Water",
-            "budget": 30
-        },
-        {
-            "title": "Insurance",
-            "budget": 150
-        },
-        {
-            "title": "Personal",
-            "budget": 80
+    "chartData": {
+        "labels": [
+            "Eat Out",
+            "Rent",
+            "Groceries",
+            "Electricity",
+            "Water",
+            "Insurance",
+            "Personal"
+        ],
+        "dataSets": {
+            "data": [
+                25,
+                375,
+                110,
+                30,
+                40,
+                150,
+                80
+            ]
         }
-    ]
+    }
 }
