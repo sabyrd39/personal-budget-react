@@ -1,9 +1,51 @@
 import React from 'react';
-import axios from "axios";
 import Chart from 'chart.js';
+import axios from 'axios';
 
 function HomePage() {
+    
+    var dataSource = {
+        datasets: [
+            {
+                    data: [],
+                    backgroundColor: [
+                        '#ffcd56',
+                        '#ff6384',
+                        '#36a2eb',
+                        '#fd6b19',
+                        "#66ff33",
+                        "#6600ff",
+                        "#000000",
+                        "#ff33cc",                        
+                    ],
+                }
+            ],
+            labels: []
+        };
+
+        function createChart() {
+            var ctx = document.getElementById("myChart");
+            var myPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: dataSource
+            });
+        }
+
+        function getBudget() {
+            axios.get('/budget')
+            .then(function (res) {
+                console.log(res.data);
+                for (var i=0; i < res.data.myBudget.length; i++ ) {
+                    dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
+                    dataSource.labels[i] = res.data.myBudget[i].title;
+                    createChart();
+                }
+            })
+        }
+        getBudget();
+
   return (
+    
     <main className="center" id="main">
 
   <div className="page-area">
@@ -65,6 +107,14 @@ function HomePage() {
           </div>
       </pb-article>
       </div>
+      <div class="bottom">
+        <div class="center">
+            All rights reserved &copy; Fabio Nolasco
+        </div>
+    </div>
+    <div>
+      <canvas id="myChart" height="400" width="400"/>
+    </div>
 </main>
 
     
