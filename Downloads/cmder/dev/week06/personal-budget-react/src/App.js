@@ -3,7 +3,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
 
 import Menu from './Menu/Menu';
@@ -12,6 +12,8 @@ import HomePage from './HomePage/HomePage';
 import Footer from './Footer/Footer';
 import AboutPage from './AboutPage/AboutPage';
 import LoginPage from './LoginPage/LoginPage';
+import Chart from 'chart.js';
+import ChartComponent from './ChartComponent';
 
 function App() {
   return (
@@ -28,10 +30,10 @@ function App() {
           </Route>
           <Route path="/">
             <HomePage/>
+            <ChartComponent chartData = {this.state.chartData}></ChartComponent>
           </Route>
         </Switch>
       </div>
-      <HomePage/>
       <Footer/>
     </Router>
   );

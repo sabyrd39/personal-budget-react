@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from "axios";
+import Chart from 'chart.js';
 
 function HomePage() {
   return (
@@ -62,16 +64,12 @@ function HomePage() {
               because they know it is all good and accounted for.
           </div>
       </pb-article>
-
-      <article>
-        <h1>Chart</h1>
-        <p>
-          <canvas id="myChart" width="400" height="400"></canvas>
-        </p>
-      </article>
       </div>
 </main>
+
+    
   );
+
 }
 
 export default HomePage;
